@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini SPA</title>
+  <script src="ajax.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <h1>Basic Router</h1>
+    </header>
+    <nav class="nav">
+      <ul class="navigation">
+        <li onclick="loadPage(1, 'contents-1.html');">
+          <a href="#">contents 1</a>
+        </li>
+        <li onclick="loadPage(2, 'contents-2.html');">
+          <a href="#">contents 2</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="main" id="contents">&lt;void&gt;</div>
+    <aside class="aside aside-1">URI Loaded:
+      <span id="info">&lt;void&gt;</span>
+    </aside>
+    <footer class="footer">
+      <p>test count:
+        <span id="testCount"></span>
+      </p>
+    </footer>
+  </div>
+  <script>
+    "use strict";
+    const main = true;
+    let currentContentsLoaded = 0;
+    let counter = 0;
+    function setContents(id, contents) {
+      try {
+        const node = document.getElementById(id);
+        if (node !== null)
+          node.innerHTML = contents;
+      }
+      catch (e) { console.log(e); }
+    }
+    function updateContents() {
+      switch (currentContentsLoaded) {
+        case 1: setContents("value1x", counter);
+          break;
+        case 2: setContents("value2x", counter * 2);
+          break;
+      }
+      setContents("testCount", counter);
+    }
+    setInterval(() => {
+      counter++;
+      updateContents();
+    }, 1000);
+
+    function loadPage(num, uri) {
+      if (num !== currentContentsLoaded) {
+        currentContentsLoaded = num;
+        getHttpResource(uri).then((result) => {
+          setContents("contents", result);
+          setContents("info", uri);
+          updateContents();
+        });
+      }
+    }
+
+  </script>
+</body>
+
+</html>

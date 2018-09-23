@@ -1,0 +1,113 @@
+body {
+  padding: 1%;
+  margin: 0;
+  font-family: sans-serif;
+}
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+}
+.wrapper > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+.header {
+  background: darkblue;
+  color: lightgray;
+  text-shadow: 2px 2px 4px cyan;
+}
+.footer {
+  background: blue;
+  color: lightgray;
+}
+.main {
+  text-align: left;
+  background: deepskyblue;
+}
+.aside-1 {
+  background: darkslateblue;
+  color: lightblue;
+}
+.aside-2 {
+  background: darkslateblue;
+  color: lightblue;
+}
+.nav {
+  padding: 0px;
+}
+@media all and (min-width: 600px) {
+  .aside {
+    flex: 1 auto;
+  }
+}
+@media all and (min-width: 800px) {
+  .main {
+    flex: 100;
+  }
+  .aside-1 {
+    order: 1;
+  }
+  .main {
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    order: 4;
+  }
+}
+.navigation {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  background: black;
+  display: flex;
+}
+.navigation a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: white;
+  transition: color 1s;
+}
+a:hover {
+  color: yellow;
+  transition: color 1s;
+}
+@media all and (max-width: 900px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+@media all and (max-width: 800px) {
+  .navigation {
+    flex-flow: column;
+    padding: 0;
+  }
+  .navigation a {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .navigation li:last-of-type a {
+    border-bottom: none;
+  }
+}
+.button {
+  background-color: blue;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: color 1s;
+}
